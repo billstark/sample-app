@@ -192,3 +192,63 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+/* tosolists */
+
+.todolists {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .content {
+    display: block;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+  }
+  .tag {
+    color: $gray-light;
+    display: block;
+  }
+  .label {
+    font-size: 11px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
+/* task info */
+
+.task_info {
+  div {
+    border-top: 1px solid #e8e8e8; 
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  #title {
+    font-size:18px; 
+    padding-top:15px;
+  }
+
+  #num {
+    padding-left:15px; 
+    font-size:40px; 
+    padding-top:15px; 
+    padding-bottom:20px;
+  }
+}

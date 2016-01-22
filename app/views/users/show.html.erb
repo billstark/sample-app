@@ -6,6 +6,30 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <span style="color:grey; font-size:12px; margin-top:10px"><%= @user.email %></span>
+    </section>
+    <section class="task_info">
+      <div class="col-sm-4">
+        <span id="title">All Tasks</span>
+        <span id="num"><%= link_to @user.to_do_list.count, {:controller => 'users', :action => 'show', :task_status => nil} %></span>
+      </div>
+      <div class="col-sm-4">
+        <span id="title">Completed</span>
+        <span id="num"><%= link_to @user.to_do_list.where("status = ?", 0).count, {:controller => 'users', :action => 'show', :task_status => 0} %></span>
+      </div>
     </section>
   </aside>
+  <div class="col-md-8">
+    <% if @user.to_do_list.any? %>
+      <% if !params[:task_status] %>
+        <h3>All Tasks</h3>
+      <% else %>
+        <h3>Completed</h3>
+      <% end %>
+      <ol class="todolists">
+        <%= render @to_do_lists %>
+      </ol>
+      <%= will_paginate @to_do_lists %>
+    <% end %>
+  </div>
 </div>

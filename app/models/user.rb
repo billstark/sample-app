@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many :to_do_list, dependent: :destroy
 	attr_accessor :remember_token
 
 	before_save { self.email = self.email.downcase }
@@ -37,5 +38,14 @@ class User < ActiveRecord::Base
     def forget 
       update_attribute(:remember_digest, nil)
     end
+
+    def feed(tag_id)
+    	if tag_id
+    		ToDoList.where("user_id = ? and status = ? and tag_id = ?", id, 1, tag_id)
+    	else 
+        ToDoList.where("user_id = ? and status = ?", id, 1)
+    	end
+    	
+  	end
 
 end

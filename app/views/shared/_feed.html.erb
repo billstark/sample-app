@@ -1,0 +1,11 @@
+<% if @feed_items.any? %>
+  <ol class="todolists">
+    <%= render @feed_items %>
+  </ol>
+  <%= will_paginate @feed_items %>
+<% else %>
+  <div style="text-align:center; padding-top:120px; color:grey">
+  	<sapn>It seems that you have finished all your tasks! d(`･∀･)b</span><br>
+  	<span><==&nbsp;&nbsp;Wanna add one there? (灬ºωº灬)&nbsp;&nbsp;==</span><br>
+  </div>
+<% end %>

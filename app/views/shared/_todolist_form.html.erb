@@ -1,0 +1,11 @@
+<%= form_for(@newtask) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<h4>Task</h4>
+    <%= f.text_area :description, placeholder: "Compose new task...",class: "form-control", rows: 5 %>
+    <p style="font-size:10px">Describe your task in no more than 140 words</p>
+    <%= f.label :tag_id %>
+    <%= f.select :tag_id, [['None', 0], ['Family', 1], ['Work', 2], ['Study', 3], ['Activity', 4], ['Relationship', 5]], class: "form-control" %>
+  </div>
+  <%= f.submit "Add!", class: "btn btn-primary" %>
+<% end %>

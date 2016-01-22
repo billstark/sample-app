@@ -15,9 +15,13 @@ class UsersController < ApplicationController
   	end
   end
 
-
   def show
   	@user = User.find(params[:id])
+    if !params[:task_status].nil?
+      @to_do_lists = @user.to_do_list.where("status = ?", params[:task_status]).paginate(page: params[:page])
+    else 
+      @to_do_lists = @user.to_do_list.paginate(page: params[:page])
+    end
   end
 
   private
@@ -25,5 +29,6 @@ class UsersController < ApplicationController
   def user_params
   	params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
 
 end

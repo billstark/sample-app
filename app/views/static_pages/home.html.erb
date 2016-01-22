@@ -1,14 +1,39 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="todolist_form">
+        <%= render 'shared/todolist_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+    	
+    	<!-- In this part I will devide the tasks into categories -->
+    	<ul class="nav nav-pills">
+		  <% if !@tag %><li class="active"><% else %><li><% end %><%= link_to "To Do List", {:controller => 'static_pages', :action => 'home', :tag_id => nil} %></li>
+		  <% if @tag == '1' %><li class="active"><% else %><li><% end %><%= link_to "Family", {:controller => 'static_pages', :action => 'home', :tag_id => 1} %></li>
+		  <% if @tag == '2' %><li class="active"><% else %><li><% end %><%= link_to "Work", {:controller => 'static_pages', :action => 'home', :tag_id => 2} %></li>
+		  <% if @tag == '3' %><li class="active"><% else %><li><% end %><%= link_to "Study", {:controller => 'static_pages', :action => 'home', :tag_id => 3} %></li>
+		  <% if @tag == '4' %><li class="active"><% else %><li><% end %><%= link_to "Activity", {:controller => 'static_pages', :action => 'home', :tag_id => 4} %></li>
+		  <% if @tag == '5' %><li class="active"><% else %><li><% end %><%= link_to "Relationship", {:controller => 'static_pages', :action => 'home', :tag_id => 5} %></li>
+		</ul>
+		<div class="tab-content">
+		  <%= render 'shared/feed' %>
+		</div>
+	    <!-- end -->
+      
+    </div>
+  </div>
+<% else %>
+	<div class="center jumbotron">
+	  <h1>Welcome to the My ToDoList</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+	  <h2>
+	    Begin your efficient life here!
+	  </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	</div>
+<% end %>

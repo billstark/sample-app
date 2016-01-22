@@ -1,0 +1,16 @@
+<li id="todolist-<%= to_do_list.id %>">
+
+	  	<span class="content"><%= to_do_list.description %></span>
+		<span class="timestamp">
+		  Added <%= time_ago_in_words(to_do_list.created_at) %> ago.
+		</span>
+		
+		<% if to_do_list.tag_id != 0 %>
+		 <span class="label label-info"><%= tag_name(to_do_list.tag_id) %></span>
+		<% end %>
+  	<% if current_user == (to_do_list.user) && to_do_list.status == 1 %>
+		<span class="label label-success"><%= link_to "Complete!", to_do_list, method: :delete, class: "label" %></span>
+	<% else %>
+		<span class="label label-warning"><%= link_to "Recover", to_do_list, method: :put, class: "label" %></span>
+  	<% end %>
+</li>
